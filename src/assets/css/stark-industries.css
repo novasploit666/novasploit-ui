@@ -1,0 +1,145 @@
+/* STARK INDUSTRIES HUD - optional visual layer for NovaSploit v2.2.8
+   Pure CSS overrides. Original module behavior and interactions are preserved. */
+:root {
+    --stark-cyan: #50dcff;
+    --stark-cyan-soft: rgba(80, 220, 255, .24);
+    --stark-red: #ff465a;
+    --stark-gold: #ffbf5f;
+    --stark-glass: rgba(4, 15, 26, .76);
+    --stark-line: rgba(80, 220, 255, .38);
+    --stark-font: "United Sans Medium", "Fira Mono", monospace;
+}
+
+html, body { background-color: #02060b; }
+body {
+    background:
+        radial-gradient(ellipse at 50% 48%, rgba(12, 50, 73, .22), transparent 58%),
+        linear-gradient(rgba(80,220,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(80,220,255,.035) 1px, transparent 1px),
+        #02060b;
+    background-size: auto, 34px 34px, 34px 34px, auto;
+    text-shadow: 0 0 7px rgba(80,220,255,.14);
+}
+
+/* Subtle scanner sweep. Respects reduced-motion preferences below. */
+body.solidBackground { background-color: #02060b; }
+body.solidBackground::selection { background: rgba(80,220,255,.3); }
+body > section { transition: filter .25s ease, border-color .25s ease; }
+section#main_shell {
+    background: linear-gradient(145deg, rgba(7,24,39,.94), rgba(2,8,15,.96));
+    border: 1px solid rgba(80,220,255,.48);
+    box-shadow: 0 0 0 1px rgba(80,220,255,.06), 0 0 24px rgba(0,170,255,.10), inset 0 0 28px rgba(80,220,255,.035);
+    backdrop-filter: blur(5px);
+    --aug-border-bg: var(--stark-cyan);
+    --aug-border-opacity: .72;
+}
+section#main_shell::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+    left: 0;
+    right: 0;
+    height: 13%;
+    top: -15%;
+    background: linear-gradient(180deg, transparent, rgba(80,220,255,.07), transparent);
+    animation: stark-scan 9s linear infinite;
+}
+@keyframes stark-scan {
+    0% { top: -15%; opacity: 0; }
+    8% { opacity: .85; }
+    92% { opacity: .65; }
+    100% { top: 110%; opacity: 0; }
+}
+
+section > h3.title:first-child {
+    color: var(--stark-cyan);
+    letter-spacing: .18em;
+    text-shadow: 0 0 8px rgba(80,220,255,.3);
+    border-bottom-color: var(--stark-line);
+}
+section > h3.title:first-child::before,
+section > h3.title:first-child::after { border-color: var(--stark-cyan); }
+section.mod_column {
+    filter: drop-shadow(0 0 8px rgba(0, 170, 255, .055));
+}
+section.mod_column > div {
+    border-bottom: 1px solid rgba(80,220,255,.12);
+}
+
+/* Terminal title strip and tab rail */
+section#main_shell > h3.title {
+    color: var(--stark-gold);
+    border-bottom-color: rgba(255,191,95,.34);
+}
+ul#main_shell_tabs {
+    border-bottom-color: rgba(80,220,255,.42);
+    background: rgba(2,8,15,.86);
+}
+ul#main_shell_tabs > li {
+    background: rgba(6,20,33,.9);
+    color: rgba(168,234,255,.72);
+    letter-spacing: .1em;
+    transition: color .18s ease, background .18s ease, filter .18s ease;
+}
+ul#main_shell_tabs > li:hover {
+    color: #fff;
+    background: rgba(18,60,82,.88);
+    filter: drop-shadow(0 0 5px rgba(80,220,255,.18));
+}
+ul#main_shell_tabs > li.active {
+    color: #02060b;
+    background: var(--stark-cyan);
+    box-shadow: 0 0 16px rgba(80,220,255,.24);
+}
+ul#main_shell_tabs > li:not(:first-child) { border-left-color: rgba(80,220,255,.26); }
+
+/* Shared module surfaces and data typography */
+div#mod_clock,
+div#mod_sysinfo,
+div#mod_cpuinfo,
+div#mod_ramwatcher_inner,
+div#mod_netstat,
+div#mod_conninfo,
+div#mod_hardwareInspector_inner,
+div#mod_globe_innercontainer {
+    border-color: var(--stark-line);
+}
+div#mod_clock h1,
+div#mod_sysinfo h2,
+div#mod_cpuinfo h1,
+div#mod_netstat h1,
+div#mod_ramwatcher_inner h1 {
+    text-shadow: 0 0 9px rgba(80,220,255,.19);
+}
+div#mod_clock::before, div#mod_clock::after,
+div#mod_sysinfo::before, div#mod_sysinfo::after,
+div#mod_cpuinfo::before, div#mod_cpuinfo::after {
+    border-color: rgba(80,220,255,.68);
+}
+canvas { filter: drop-shadow(0 0 2px rgba(80,220,255,.2)); }
+
+/* Filesystem, modal, and keyboard focus states */
+section#filesystem > h3.title { color: var(--stark-cyan); }
+div#fs_disp_container > *:hover {
+    background: rgba(80,220,255,.09);
+    outline: 1px solid rgba(80,220,255,.3);
+    box-shadow: inset 0 0 14px rgba(80,220,255,.06);
+}
+input:focus, textarea:focus, select:focus, button:focus {
+    outline: 1px solid var(--stark-cyan) !important;
+    box-shadow: 0 0 0 2px rgba(80,220,255,.13) !important;
+}
+#keyboard .key:active { filter: brightness(1.45); }
+
+/* Gold is reserved for important status, red for alert accents. */
+#main_shell_greeting em { color: var(--stark-gold); text-shadow: 0 0 14px rgba(255,191,95,.24); }
+#modal_settingsEditor, #modal_shortcutsHelp { border-color: rgba(80,220,255,.55); }
+
+@media (max-width: 900px) {
+    body::before { left: 1vw; letter-spacing: .1em; font-size: 8px; }
+    body::after { right: 1vw; letter-spacing: .1em; font-size: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}

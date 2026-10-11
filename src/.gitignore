@@ -1,0 +1,74 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build output and packaged releases
+dist/
+out/
+release/
+build/
+*.AppImage
+*.deb
+*.rpm
+*.snap
+*.dmg
+*.pkg
+*.exe
+*.msi
+*.asar
+
+# Logs and debug output
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.stackdump
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+
+# Local/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python / native build caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.cache/
+.ninja_deps
+.ninja_log
+
+# Backup and temporary files (do not commit local recovery copies)
+*.bak
+*.bak.*
+*.old
+*.orig
+*.rej
+*.tmp
+*.temp
+
+# Local environment and generated metadata
+.envrc
+.npm/
+.yarn/
+coverage/
+
+# Do not ignore package-lock.json or other committed lockfiles.
+# Do not ignore Git submodule contents by default.

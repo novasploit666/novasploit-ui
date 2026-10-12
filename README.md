@@ -86,6 +86,27 @@ Linux distributions package Electron, FUSE, system libraries, and build tools di
 
 Please include your distribution/version and relevant error output when reporting a reproducible issue.
 
+## Download
+
+The latest Linux x86-64 release is available on the [NOVASPLOIT-UI Releases page](https://github.com/YOUR-USERNAME/NOVASPLOIT-UI/releases/latest).
+
+**Download:** [NovaSploit-UI-x64.AppImage](https://github.com/YOUR-USERNAME/NOVASPLOIT-UI/releases/latest/download/NovaSploit-UI-x64.AppImage)
+
+After downloading, open a terminal in the download directory and run:
+
+```bash
+chmod +x NovaSploit-UI-x64.AppImage
+./NovaSploit-UI-x64.AppImage
+```
+
+For download integrity verification, download the SHA-256 checksum file from the same release and run:
+
+```bash
+sha256sum -c NovaSploit-UI-x64.AppImage.sha256
+```
+
+This build targets 64-bit x86-64 Linux systems. AppImage may require compatible FUSE support on some distributions.
+
 ## Development notes
 
 - **Framework:** Electron desktop application.
